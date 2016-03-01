@@ -23,6 +23,11 @@
         <artifactId>drools-compiler</artifactId>
         <version>${drools-version}</version>
     </dependency>
+	<dependency>
+		<groupId>org.drools</groupId>
+		<artifactId>drools-workbench-models-guided-dtable</artifactId>
+		<version>${drools-version}</version>
+	</dependency>
     <dependency>
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
