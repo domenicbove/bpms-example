@@ -1,0 +1,44 @@
+//created on: Apr 13, 2015
+package org.acme.insurance.policyquote
+
+import org.acme.insurance.Driver
+import org.acme.insurance.Policy
+ 
+rule "AccidentSurcharge"
+no-loop
+lock-on-active
+    when
+        //conditions
+        driver : Driver(numberOfAccidents > 2)
+		policy : Policy(p : price > 0, policyType == "AUTO")
+    then
+        //actions
+        modify(policy) {setPrice(p + 200)};
+        System.out.println("fired rule " + kcontext.getRule().getName());
+ 
+end
+
+rule "NoviceDriverSurcharge"
+no-loop
+lock-on-active
+    when
+        //conditions
+        driver : Driver(age < 20)
+		policy : Policy(p : price > 0, policyType == "AUTO")
+    then
+        //actions
+        modify(policy) {setPrice(p + 250)};
+        System.out.println("fired rule " + kcontext.getRule().getName());
+ 
+end
+
+rule "NewerVehicleSurcharge"
+no-loop
+lock-on-active
+    when
+		policy : Policy(p : price > 0, policyType == "AUTO", vehicleYear >= 2004)
+    then
+        modify(policy) {setPrice(p + 100)};
+        System.out.println("fired rule " + kcontext.getRule().getName());
+ 
+end
