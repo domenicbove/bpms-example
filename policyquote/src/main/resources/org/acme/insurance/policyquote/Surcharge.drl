@@ -7,6 +7,7 @@ import org.acme.insurance.Policy
 rule "AccidentSurcharge"
 no-loop
 lock-on-active
+	ruleflow-group "surcharge"
     when
         //conditions
         driver : Driver(numberOfAccidents > 2)
@@ -21,6 +22,7 @@ end
 rule "NoviceDriverSurcharge"
 no-loop
 lock-on-active
+	ruleflow-group "surcharge"
     when
         //conditions
         driver : Driver(age < 20)
@@ -35,6 +37,7 @@ end
 rule "NewerVehicleSurcharge"
 no-loop
 lock-on-active
+	ruleflow-group "surcharge"
     when
 		policy : Policy(p : price > 0, policyType == "AUTO", vehicleYear >= 2004)
     then

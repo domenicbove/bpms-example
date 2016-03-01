@@ -4,7 +4,7 @@ import org.acme.insurance.Driver;
 import org.acme.insurance.Policy;
 
 rule "PriceMultipleVehicles"
-
+	ruleflow-group "total"
     salience -10
 
     when
