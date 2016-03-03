@@ -11,7 +11,7 @@ import org.kie.api.runtime.rule.FactHandle;
 public class PriceMultipleVehilcesTest extends BaseRulesTest {
 	
 	@Test
-	public void safeYouthsTest() {
+	public void entireFlowTest() {
 		Driver d1= new Driver();
 		d1.setAge(30);
 		d1.setCreditScore(715);
@@ -37,6 +37,9 @@ public class PriceMultipleVehilcesTest extends BaseRulesTest {
 		FactHandle policy1FH = ksession.insert(p1);
 		FactHandle policy2FH = ksession.insert(p2);
 		FactHandle policyMFH = ksession.insert(pM);
+		
+		ksession.getAgenda().getAgendaGroup( "rejection" ).setFocus();
+		ksession.fireAllRules();
 		
 		ksession.getAgenda().getAgendaGroup( "calculation" ).setFocus();
 		ksession.fireAllRules();
