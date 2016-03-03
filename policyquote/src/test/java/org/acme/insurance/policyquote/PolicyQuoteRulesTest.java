@@ -27,7 +27,11 @@ public class PolicyQuoteRulesTest extends BaseRulesTest {
 		// insert objects into working memory
 		FactHandle driverFH = ksession.insert(driver);
 		FactHandle policyFH = ksession.insert(policy);
+		
+		//fire rules in calculation rf group
+		ksession.getAgenda().getAgendaGroup( "calculation" ).setFocus();
 		ksession.fireAllRules();
+		
 		ksession.delete(driverFH);
 		ksession.delete(policyFH);
 		assertEquals("Price is 300", new Integer(300), policy.getPrice());
@@ -47,6 +51,7 @@ public class PolicyQuoteRulesTest extends BaseRulesTest {
 		// insert objects into working memory
 		FactHandle driverFH = ksession.insert(driver);
 		FactHandle policyFH = ksession.insert(policy);
+		ksession.getAgenda().getAgendaGroup( "calculation" ).setFocus();
 		ksession.fireAllRules();
 		ksession.delete(driverFH);
 		ksession.delete(policyFH);
@@ -67,6 +72,7 @@ public class PolicyQuoteRulesTest extends BaseRulesTest {
 		// insert objects into working memory
 		FactHandle driverFH = ksession.insert(driver);
 		FactHandle policyFH = ksession.insert(policy);
+		ksession.getAgenda().getAgendaGroup( "calculation" ).setFocus();
 		ksession.fireAllRules();
 		ksession.delete(driverFH);
 		ksession.delete(policyFH);
@@ -87,6 +93,7 @@ public class PolicyQuoteRulesTest extends BaseRulesTest {
 		// insert objects into working memory
 		FactHandle driverFH = ksession.insert(driver);
 		FactHandle policyFH = ksession.insert(policy);
+		ksession.getAgenda().getAgendaGroup( "calculation" ).setFocus();
 		ksession.fireAllRules();
 		ksession.delete(driverFH);
 		ksession.delete(policyFH);

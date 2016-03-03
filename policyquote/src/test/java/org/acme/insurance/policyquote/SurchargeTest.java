@@ -20,6 +20,8 @@ public class SurchargeTest extends BaseRulesTest {
 		
 		FactHandle driverFH = ksession.insert(driver);
 		FactHandle policyFH = ksession.insert(policy);
+		
+		ksession.getAgenda().getAgendaGroup( "surcharge" ).setFocus();
 		ksession.fireAllRules();
 		ksession.delete(driverFH);
 		ksession.delete(policyFH);
@@ -37,6 +39,8 @@ public class SurchargeTest extends BaseRulesTest {
 		
 		FactHandle driverFH = ksession.insert(driver);
 		FactHandle policyFH = ksession.insert(policy);
+		
+		ksession.getAgenda().getAgendaGroup( "surcharge" ).setFocus();
 		ksession.fireAllRules();
 		ksession.delete(driverFH);
 		ksession.delete(policyFH);
@@ -52,6 +56,8 @@ public class SurchargeTest extends BaseRulesTest {
 		policy.setVehicleYear(2006);
 		
 		FactHandle policyFH = ksession.insert(policy);
+		
+		ksession.getAgenda().getAgendaGroup( "surcharge" ).setFocus();
 		ksession.fireAllRules();
 		ksession.delete(policyFH);
 		

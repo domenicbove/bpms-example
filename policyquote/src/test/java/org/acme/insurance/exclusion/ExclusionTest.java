@@ -5,17 +5,9 @@ import static org.junit.Assert.assertEquals;
 import java.util.Collection;
 
 import org.acme.insurance.Driver;
-import org.acme.insurance.Policy;
 import org.acme.insurance.Rejection;
 import org.acme.insurance.testing.BaseRulesTest;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
 import org.junit.Test;
-import org.kie.api.KieBase;
-import org.kie.api.KieServices;
-import org.kie.api.logger.KieRuntimeLogger;
-import org.kie.api.runtime.KieContainer;
-import org.kie.api.runtime.KieSession;
 import org.kie.api.runtime.rule.FactHandle;
 
 public class ExclusionTest extends BaseRulesTest {
@@ -25,6 +17,8 @@ public class ExclusionTest extends BaseRulesTest {
 		Driver driver= new Driver();
 		driver.setAge(14);
 		FactHandle driverFH = ksession.insert(driver);
+		
+		ksession.getAgenda().getAgendaGroup( "rejection" ).setFocus();
 		ksession.fireAllRules();
 		ksession.delete(driverFH);
 		
@@ -49,6 +43,8 @@ public class ExclusionTest extends BaseRulesTest {
 		Driver driver= new Driver();
 		driver.setAge(114);
 		FactHandle driverFH = ksession.insert(driver);
+		
+		ksession.getAgenda().getAgendaGroup( "rejection" ).setFocus();
 		ksession.fireAllRules();
 		ksession.delete(driverFH);
 		
@@ -72,6 +68,8 @@ public class ExclusionTest extends BaseRulesTest {
 		Driver driver= new Driver();
 		driver.setNumberOfTickets(8);
 		FactHandle driverFH = ksession.insert(driver);
+		
+		ksession.getAgenda().getAgendaGroup( "rejection" ).setFocus();
 		ksession.fireAllRules();
 		ksession.delete(driverFH);
 		
@@ -95,6 +93,8 @@ public class ExclusionTest extends BaseRulesTest {
 		Driver driver= new Driver();
 		driver.setNumberOfAccidents(10);
 		FactHandle driverFH = ksession.insert(driver);
+		
+		ksession.getAgenda().getAgendaGroup( "rejection" ).setFocus();
 		ksession.fireAllRules();
 		ksession.delete(driverFH);
 		

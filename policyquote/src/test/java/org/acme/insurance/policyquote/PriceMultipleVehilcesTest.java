@@ -38,7 +38,18 @@ public class PriceMultipleVehilcesTest extends BaseRulesTest {
 		FactHandle policy2FH = ksession.insert(p2);
 		FactHandle policyMFH = ksession.insert(pM);
 		
+		ksession.getAgenda().getAgendaGroup( "calculation" ).setFocus();
 		ksession.fireAllRules();
+		
+		ksession.getAgenda().getAgendaGroup( "surcharge" ).setFocus();
+		ksession.fireAllRules();
+		
+		ksession.getAgenda().getAgendaGroup( "discount" ).setFocus();
+		ksession.fireAllRules();
+		
+		ksession.getAgenda().getAgendaGroup( "total" ).setFocus();
+		ksession.fireAllRules();
+		
 		ksession.delete(driverFH);
 		ksession.delete(policy1FH);
 		ksession.delete(policy2FH);
