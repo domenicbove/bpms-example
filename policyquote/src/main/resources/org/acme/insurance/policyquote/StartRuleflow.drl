@@ -1,10 +1,10 @@
 package org.acme.insurance.policyquote;
 
 rule "StartRuleflow"
-
-ruleflow-group "start"
+salience 100
+ 
 when
 then
     System.out.println("StartRuleflow - ON");
-    kcontext.getKnowledgeRuntime().startProcess("policyquote.policyquotecalculationprocess");
+    //kcontext.getKnowledgeRuntime().startProcess("policyquote.policyquotecalculationprocess");
 end
