@@ -10,6 +10,7 @@
 
 	<properties>
 		<drools-version>6.3.0.Final-redhat-5</drools-version>
+		<jbpm-version>6.3.0.Final</jbpm-version>
 		<junit-version>4.11</junit-version>
 	</properties>
 
@@ -33,9 +34,13 @@
 		<dependency>
 			<groupId>org.jbpm</groupId>
 			<artifactId>jbpm-bpmn2</artifactId>
-			<version>6.3.0.Final</version>
+			<version>${jbpm-version}</version>
 		</dependency>
-
+		<dependency>
+			<groupId>org.jbpm</groupId>
+			<artifactId>jbpm-test</artifactId>
+			<version>${jbpm-version}</version>
+		</dependency>
 
 		<dependency>
 			<groupId>junit</groupId>
