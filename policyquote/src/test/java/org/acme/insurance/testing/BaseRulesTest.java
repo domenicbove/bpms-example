@@ -2,14 +2,12 @@ package org.acme.insurance.testing;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
-import org.kie.api.KieBase;
 import org.kie.api.KieServices;
 import org.kie.api.logger.KieRuntimeLogger;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
 
 public abstract class BaseRulesTest {
-	protected static KieBase kbase;
 	protected static KieSession ksession;
 	protected static KieRuntimeLogger klogger;
 
