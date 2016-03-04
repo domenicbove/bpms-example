@@ -1,9 +1,13 @@
 package org.acme.insurance.policyquote;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+
+import java.util.Collection;
 
 import org.acme.insurance.Driver;
 import org.acme.insurance.Policy;
+import org.acme.insurance.Rejection;
 import org.acme.insurance.testing.BaseRulesTest;
 import org.junit.Test;
 import org.kie.api.runtime.rule.FactHandle;
@@ -98,7 +102,7 @@ public class PriceMultipleVehilcesTest extends BaseRulesTest {
 		FactHandle policyMFH = ksession.insert(pM);
 		
 		ksession.startProcess("policyquote.policyquotecalculationprocess");
-		ksession.fireAllRules();	
+		ksession.fireAllRules();
 		
 		ksession.delete(driverFH);
 		ksession.delete(policy1FH);
@@ -110,5 +114,45 @@ public class PriceMultipleVehilcesTest extends BaseRulesTest {
 		assertEquals(p2.getPrice(), new Integer(120));
 		assertEquals(p2.getPriceDiscount(), new Integer(50));
 		assertEquals(pM.getPrice(), new Integer(240));
+	}
+	
+	@Test
+	public void rejectionThruProcess(){
+		Driver d1= new Driver();
+		d1.setAge(14);
+		d1.setCreditScore(715);
+		d1.setNumberOfAccidents(0);
+		d1.setNumberOfTickets(0);
+		
+		Policy p1 = new Policy();
+		p1.setPolicyType("AUTO");
+		p1.setVehicleYear(2000);
+		p1.setDriver(d1);
+		
+		FactHandle driverFH = ksession.insert(d1);
+		FactHandle policy1FH = ksession.insert(p1);
+		
+		ksession.startProcess("policyquote.policyquotecalculationprocess");
+		
+		ksession.fireAllRules();
+		
+		ksession.delete(driverFH);
+		ksession.delete(policy1FH);
+
+		Rejection r = null;
+		Collection objects = ksession.getObjects();
+		for(Object o: objects){
+			if(o instanceof Rejection){
+				r = (Rejection) o;
+				break;
+			}
+		}
+		
+		for(FactHandle f: ksession.getFactHandles()){
+			ksession.delete(f);
+		}
+		
+		assertEquals(r.getReason(), "Too Young");
+		assertNull(p1.getPrice());
 	}
 }
