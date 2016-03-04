@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> redo
 package org.acme.insurance.exclusion;
 
 import java.lang.Number;
@@ -5,12 +9,21 @@ import org.acme.insurance.Driver;
 import org.acme.insurance.Rejection;
 
 rule "TooYoung"
+<<<<<<< HEAD
 	dialect "mvel"
 	ruleflow-group "rejection"
+=======
+	ruleflow-group "rejection"
+	dialect "mvel"
+>>>>>>> redo
 	when
 		Driver( age < 18 )
 	then
 		Rejection fact0 = new Rejection();
 		fact0.setReason( "Too Young" );
 		insert( fact0 );
+<<<<<<< HEAD
 end
+=======
+end
+>>>>>>> redo

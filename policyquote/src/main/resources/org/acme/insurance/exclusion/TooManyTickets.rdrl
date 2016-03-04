@@ -5,12 +5,21 @@ import org.acme.insurance.Driver;
 import org.acme.insurance.Rejection;
 
 rule "TooManyTickets"
+<<<<<<< HEAD
 	dialect "mvel"
 	ruleflow-group "rejection"
+=======
+	ruleflow-group "rejection"
+	dialect "mvel"
+>>>>>>> redo
 	when
 		Driver( numberOfTickets > 6 )
 	then
 		Rejection fact0 = new Rejection();
 		fact0.setReason( "Too Many Tickets" );
 		insert( fact0 );
+<<<<<<< HEAD
 end
+=======
+end
+>>>>>>> redo

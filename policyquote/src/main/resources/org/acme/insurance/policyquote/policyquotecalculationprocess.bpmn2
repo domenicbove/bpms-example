@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
 <bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.omg.org/bpmn20" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:bpsim="http://www.bpsim.org/schemas/1.0" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:drools="http://www.jboss.org/drools" id="_OaOKQOXDEeSmtI68maQdyw" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd http://www.jboss.org/drools drools.xsd http://www.bpsim.org/schemas/1.0 bpsim.xsd" exporter="jBPM Designer" exporterVersion="6.2.0" expressionLanguage="http://www.mvel.org/2.0" targetNamespace="http://www.omg.org/bpmn20" typeLanguage="http://www.java.com/javaTypes">
   <bpmn2:process id="policyquote.policyquotecalculationprocess" drools:packageName="org.acme.insurance.policyquote" drools:version="1.0" name="policyquotecalculationprocess" isExecutable="true">
     <bpmn2:extensionElements>
@@ -277,3 +278,188 @@
     <bpmn2:target>_OaOKQOXDEeSmtI68maQdyw</bpmn2:target>
   </bpmn2:relationship>
 </bpmn2:definitions>
+=======
+<!-- origin at X=0.0 Y=0.0 -->
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:java="http://www.java.com/javaTypes" xmlns:tns="http://www.jboss.org/drools" xmlns="http://www.jboss.org/drools" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd http://www.jboss.org/drools drools.xsd http://www.bpsim.org/schemas/1.0 bpsim.xsd" id="Definition" exporter="org.eclipse.bpmn2.modeler.core" exporterVersion="1.1.4.Final" expressionLanguage="http://www.mvel.org/2.0" targetNamespace="http://www.jboss.org/drools" typeLanguage="http://www.java.com/javaTypes">
+  <bpmn2:itemDefinition id="ItemDefinition_2" isCollection="false" structureRef="org.acme.insurance.Driver"/>
+  <bpmn2:itemDefinition id="ItemDefinition_4" isCollection="false" structureRef="org.acme.insurance.Policy"/>
+  <bpmn2:itemDefinition id="ItemDefinition_6" isCollection="false" structureRef="org.acme.insurance.Rejection"/>
+  <bpmn2:process id="policyquote.policyquotecalculationprocess" tns:packageName="org.acme.insurance.policyquote" name="policyquotecalculationprocess" isExecutable="true" processType="Private">
+    <bpmn2:extensionElements>
+      <tns:import name="org.acme.insurance.Driver"/>
+      <tns:import name="org.acme.insurance.Policy"/>
+      <tns:import name="org.acme.insurance.Rejection"/>
+    </bpmn2:extensionElements>
+    <bpmn2:startEvent id="StartEvent_1" name="StartProcess">
+      <bpmn2:outgoing>SequenceFlow_2</bpmn2:outgoing>
+    </bpmn2:startEvent>
+    <bpmn2:businessRuleTask id="BusinessRuleTask_1" tns:ruleFlowGroup="rejection" name="Rejection">
+      <bpmn2:incoming>SequenceFlow_2</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_3</bpmn2:outgoing>
+    </bpmn2:businessRuleTask>
+    <bpmn2:sequenceFlow id="SequenceFlow_2" tns:priority="1" sourceRef="StartEvent_1" targetRef="BusinessRuleTask_1"/>
+    <bpmn2:exclusiveGateway id="ExclusiveGateway_1" name="Gateway" gatewayDirection="Diverging">
+      <bpmn2:incoming>SequenceFlow_3</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_4</bpmn2:outgoing>
+      <bpmn2:outgoing>SequenceFlow_6</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:sequenceFlow id="SequenceFlow_3" tns:priority="1" sourceRef="BusinessRuleTask_1" targetRef="ExclusiveGateway_1"/>
+    <bpmn2:exclusiveGateway id="ExclusiveGateway_2" name="Join Gateway" gatewayDirection="Converging">
+      <bpmn2:incoming>SequenceFlow_4</bpmn2:incoming>
+      <bpmn2:incoming>SequenceFlow_10</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_5</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:sequenceFlow id="SequenceFlow_4" tns:priority="2" name="Rejection" sourceRef="ExclusiveGateway_1" targetRef="ExclusiveGateway_2">
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="FormalExpression_3" language="http://www.jboss.org/drools/rule">Rejection()</bpmn2:conditionExpression>
+    </bpmn2:sequenceFlow>
+    <bpmn2:endEvent id="EndEvent_1" name="End Event 1">
+      <bpmn2:incoming>SequenceFlow_5</bpmn2:incoming>
+    </bpmn2:endEvent>
+    <bpmn2:sequenceFlow id="SequenceFlow_5" tns:priority="1" sourceRef="ExclusiveGateway_2" targetRef="EndEvent_1"/>
+    <bpmn2:businessRuleTask id="BusinessRuleTask_2" tns:ruleFlowGroup="calculation" name="Calculation">
+      <bpmn2:incoming>SequenceFlow_6</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_7</bpmn2:outgoing>
+    </bpmn2:businessRuleTask>
+    <bpmn2:sequenceFlow id="SequenceFlow_6" tns:priority="1" name="non Rejection" sourceRef="ExclusiveGateway_1" targetRef="BusinessRuleTask_2">
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="FormalExpression_2" language="http://www.jboss.org/drools/rule">not Rejection()</bpmn2:conditionExpression>
+    </bpmn2:sequenceFlow>
+    <bpmn2:businessRuleTask id="BusinessRuleTask_3" tns:ruleFlowGroup="surcharge" name="Surcharge">
+      <bpmn2:incoming>SequenceFlow_7</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_8</bpmn2:outgoing>
+    </bpmn2:businessRuleTask>
+    <bpmn2:businessRuleTask id="BusinessRuleTask_4" tns:ruleFlowGroup="discount" name="Discount">
+      <bpmn2:incoming>SequenceFlow_8</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_9</bpmn2:outgoing>
+    </bpmn2:businessRuleTask>
+    <bpmn2:businessRuleTask id="BusinessRuleTask_5" tns:ruleFlowGroup="total" name="Total">
+      <bpmn2:incoming>SequenceFlow_9</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_10</bpmn2:outgoing>
+    </bpmn2:businessRuleTask>
+    <bpmn2:sequenceFlow id="SequenceFlow_7" tns:priority="1" sourceRef="BusinessRuleTask_2" targetRef="BusinessRuleTask_3"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_8" tns:priority="1" sourceRef="BusinessRuleTask_3" targetRef="BusinessRuleTask_4"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_9" tns:priority="1" sourceRef="BusinessRuleTask_4" targetRef="BusinessRuleTask_5"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_10" tns:priority="1" sourceRef="BusinessRuleTask_5" targetRef="ExclusiveGateway_2"/>
+  </bpmn2:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_Process_1" bpmnElement="policyquote.policyquotecalculationprocess">
+      <bpmndi:BPMNShape id="BPMNShape_StartEvent_1" bpmnElement="StartEvent_1">
+        <dc:Bounds height="0.0" width="0.0" x="45.0" y="45.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="11.0" width="54.0" x="36.0" y="81.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_BusinessRuleTask_1" bpmnElement="BusinessRuleTask_1">
+        <dc:Bounds height="50.0" width="110.0" x="130.0" y="38.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="11.0" width="38.0" x="166.0" y="57.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_ExclusiveGateway_1" bpmnElement="ExclusiveGateway_1" isMarkerVisible="true">
+        <dc:Bounds height="50.0" width="50.0" x="300.0" y="38.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="11.0" width="36.0" x="307.0" y="88.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_ExclusiveGateway_2" bpmnElement="ExclusiveGateway_2" isMarkerVisible="true">
+        <dc:Bounds height="50.0" width="50.0" x="697.0" y="38.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="11.0" width="56.0" x="694.0" y="88.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_EndEvent_1" bpmnElement="EndEvent_1">
+        <dc:Bounds height="36.0" width="36.0" x="815.0" y="45.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="11.0" width="51.0" x="808.0" y="81.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_BusinessRuleTask_2" bpmnElement="BusinessRuleTask_2">
+        <dc:Bounds height="50.0" width="110.0" x="270.0" y="144.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="11.0" width="45.0" x="302.0" y="163.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_BusinessRuleTask_3" bpmnElement="BusinessRuleTask_3">
+        <dc:Bounds height="50.0" width="110.0" x="353.0" y="252.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="11.0" width="42.0" x="387.0" y="271.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_BusinessRuleTask_4" bpmnElement="BusinessRuleTask_4">
+        <dc:Bounds height="50.0" width="110.0" x="520.0" y="233.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="11.0" width="36.0" x="557.0" y="252.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_BusinessRuleTask_5" bpmnElement="BusinessRuleTask_5">
+        <dc:Bounds height="50.0" width="110.0" x="588.0" y="144.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="11.0" width="20.0" x="633.0" y="163.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_2" bpmnElement="SequenceFlow_2" sourceElement="BPMNShape_StartEvent_1" targetElement="BPMNShape_BusinessRuleTask_1">
+        <di:waypoint xsi:type="dc:Point" x="81.0" y="63.0"/>
+        <di:waypoint xsi:type="dc:Point" x="118.0" y="63.0"/>
+        <di:waypoint xsi:type="dc:Point" x="118.0" y="63.0"/>
+        <di:waypoint xsi:type="dc:Point" x="130.0" y="63.0"/>
+        <bpmndi:BPMNLabel/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_3" bpmnElement="SequenceFlow_3" sourceElement="BPMNShape_BusinessRuleTask_1" targetElement="BPMNShape_ExclusiveGateway_1">
+        <di:waypoint xsi:type="dc:Point" x="240.0" y="63.0"/>
+        <di:waypoint xsi:type="dc:Point" x="282.0" y="63.0"/>
+        <di:waypoint xsi:type="dc:Point" x="282.0" y="63.0"/>
+        <di:waypoint xsi:type="dc:Point" x="300.0" y="63.0"/>
+        <bpmndi:BPMNLabel/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_4" bpmnElement="SequenceFlow_4" sourceElement="BPMNShape_ExclusiveGateway_1" targetElement="BPMNShape_ExclusiveGateway_2">
+        <di:waypoint xsi:type="dc:Point" x="350.0" y="63.0"/>
+        <di:waypoint xsi:type="dc:Point" x="522.0" y="63.0"/>
+        <di:waypoint xsi:type="dc:Point" x="522.0" y="63.0"/>
+        <di:waypoint xsi:type="dc:Point" x="697.0" y="63.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="11.0" width="38.0" x="506.0" y="64.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_5" bpmnElement="SequenceFlow_5" sourceElement="BPMNShape_ExclusiveGateway_2" targetElement="BPMNShape_EndEvent_1">
+        <di:waypoint xsi:type="dc:Point" x="747.0" y="63.0"/>
+        <di:waypoint xsi:type="dc:Point" x="781.0" y="63.0"/>
+        <di:waypoint xsi:type="dc:Point" x="815.0" y="63.0"/>
+        <bpmndi:BPMNLabel/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_6" bpmnElement="SequenceFlow_6" sourceElement="BPMNShape_ExclusiveGateway_1" targetElement="BPMNShape_BusinessRuleTask_2">
+        <di:waypoint xsi:type="dc:Point" x="325.0" y="88.0"/>
+        <di:waypoint xsi:type="dc:Point" x="325.0" y="116.0"/>
+        <di:waypoint xsi:type="dc:Point" x="325.0" y="144.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="11.0" width="56.0" x="298.0" y="117.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_7" bpmnElement="SequenceFlow_7" sourceElement="BPMNShape_BusinessRuleTask_2" targetElement="BPMNShape_BusinessRuleTask_3">
+        <di:waypoint xsi:type="dc:Point" x="325.0" y="194.0"/>
+        <di:waypoint xsi:type="dc:Point" x="325.0" y="238.0"/>
+        <di:waypoint xsi:type="dc:Point" x="408.0" y="238.0"/>
+        <di:waypoint xsi:type="dc:Point" x="408.0" y="252.0"/>
+        <bpmndi:BPMNLabel/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_8" bpmnElement="SequenceFlow_8" sourceElement="BPMNShape_BusinessRuleTask_3" targetElement="BPMNShape_BusinessRuleTask_4">
+        <di:waypoint xsi:type="dc:Point" x="463.0" y="277.0"/>
+        <di:waypoint xsi:type="dc:Point" x="491.0" y="277.0"/>
+        <di:waypoint xsi:type="dc:Point" x="491.0" y="258.0"/>
+        <di:waypoint xsi:type="dc:Point" x="520.0" y="258.0"/>
+        <bpmndi:BPMNLabel/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_9" bpmnElement="SequenceFlow_9" sourceElement="BPMNShape_BusinessRuleTask_4" targetElement="BPMNShape_BusinessRuleTask_5">
+        <di:waypoint xsi:type="dc:Point" x="630.0" y="258.0"/>
+        <di:waypoint xsi:type="dc:Point" x="643.0" y="258.0"/>
+        <di:waypoint xsi:type="dc:Point" x="643.0" y="194.0"/>
+        <bpmndi:BPMNLabel/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_10" bpmnElement="SequenceFlow_10" sourceElement="BPMNShape_BusinessRuleTask_5" targetElement="BPMNShape_ExclusiveGateway_2">
+        <di:waypoint xsi:type="dc:Point" x="698.0" y="169.0"/>
+        <di:waypoint xsi:type="dc:Point" x="722.0" y="169.0"/>
+        <di:waypoint xsi:type="dc:Point" x="722.0" y="88.0"/>
+        <bpmndi:BPMNLabel/>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn2:definitions>
+>>>>>>> redo
